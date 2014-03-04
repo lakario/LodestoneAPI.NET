@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LodestoneApi.Internal.Utils
 {
@@ -12,7 +7,7 @@ namespace LodestoneApi.Internal.Utils
     {
         public static string GetUrl(string url)
         {
-            var req = HttpWebRequest.Create(url) as HttpWebRequest;
+            var req = WebRequest.Create(url) as HttpWebRequest;
             req.AllowAutoRedirect = false;
             req.Method = WebRequestMethods.Http.Get;
 
@@ -20,9 +15,9 @@ namespace LodestoneApi.Internal.Utils
             try
             {
                 rsp = req.GetResponse();
-                var rst = rsp.GetResponseStream();
+                Stream rst = rsp.GetResponseStream();
                 var rdr = new StreamReader(rst);
-                var str = rdr.ReadToEnd();
+                string str = rdr.ReadToEnd();
                 rdr.Close();
                 rst.Close();
                 return str;

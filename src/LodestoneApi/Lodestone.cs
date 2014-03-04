@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CsQuery;
+﻿using System.Collections.Generic;
 using LodestoneApi.Internal.Services;
 using LodestoneApi.Models;
 
@@ -13,7 +8,7 @@ namespace LodestoneApi
     {
         public static IList<IPlayerInfo> SearchPlayers(string name, string world)
         {
-            return (IList<IPlayerInfo>)SearchService.SearchPlayers(name, world);
+            return SearchService.SearchPlayers(name, world);
         }
 
         public static IPlayerInfo GetPlayerInfo(string profileUrl)

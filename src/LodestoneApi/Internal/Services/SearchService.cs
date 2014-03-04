@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 using CsQuery;
 using CsQuery.ExtensionMethods.Internal;
@@ -16,7 +13,8 @@ namespace LodestoneApi.Internal.Services
     {
         internal static IList<IPlayerInfo> SearchPlayers(string name, string world)
         {
-            const string search_url_template = "http://na.finalfantasyxiv.com/lodestone/character/?q={0}&worldname={1}&classjob=&race_tribe=&order=";
+            const string search_url_template =
+                "http://na.finalfantasyxiv.com/lodestone/character/?q={0}&worldname={1}&classjob=&race_tribe=&order=";
 
             var matches = new List<IPlayerInfo>();
             var url = String.Format(search_url_template, HttpUtility.UrlEncode(name), HttpUtility.UrlEncode(world));
@@ -32,7 +30,7 @@ namespace LodestoneApi.Internal.Services
 
             foreach (IDomElement result in resultElements)
             {
-                var match = ParseSearchResult(result);
+                PlayerInfo match = ParseSearchResult(result);
 
                 if (match != null)
                 {
@@ -62,11 +60,7 @@ namespace LodestoneApi.Internal.Services
                     Id = match.Groups["profileId"].Captures[0].Value
                 };
             }
-            else
-            {
-                return null;
-            }
+            return null;
         }
-
     }
 }

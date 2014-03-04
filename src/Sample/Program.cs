@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LodestoneApi;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LodestoneApi;
 
 namespace Sample
 {
